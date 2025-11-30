@@ -1,0 +1,5 @@
+{
+  "name": "SubmittalCheck AI",
+  "description": "Intelligent AEC Submittal Review Assistant. Upload PDF submittals for instant analysis, compliance checking, and draft engineering responses using Gemini 2.5.",
+  "requestFramePermissions": []
+}

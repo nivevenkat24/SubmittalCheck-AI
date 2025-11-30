@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SubmittalCheck AI - Submittal Reviewer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              slate: {
+                850: '#1e293b',
+                900: '#0f172a',
+              },
+              brand: {
+                50: '#eff6ff',
+                100: '#dbeafe',
+                500: '#3b82f6',
+                600: '#2563eb',
+                700: '#1d4ed8',
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f8fafc;
+      }
+      /* Custom scrollbar for reviewing long docs */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+
+      /* Print styles for PDF Generation */
+      @media print {
+        body {
+          background-color: white !important;
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          overflow: visible !important;
+        }
+        
+        /* Hide UI elements */
+        header, .no-print, button, .chat-widget-container {
+          display: none !important;
+        }
+        
+        .print-only-visible {
+          display: block !important;
+        }
+        
+        /* Reset Layout for Doc Flow */
+        #root, #root > div, main {
+           background-color: white !important;
+           margin: 0 !important;
+           padding: 0 !important;
+           width: 100% !important;
+           overflow: visible !important;
+        }
+        
+        /* Force grid to single column stack */
+        .grid, .lg\:grid-cols-3, .md\:grid-cols-2 {
+            display: block !important;
+        }
+        .lg\:col-span-1, .lg\:col-span-2 {
+            width: 100% !important;
+            margin-bottom: 1.5rem !important;
+            break-inside: avoid;
+        }
+        
+        /* Remove shadows and borders that look bad in print */
+        .shadow-sm, .shadow-lg, .shadow-md {
+            box-shadow: none !important;
+            border: 1px solid #cbd5e1 !important;
+        }
+
+        /* Ensure content isn't clipped */
+        .overflow-hidden, .overflow-y-auto {
+            overflow: visible !important;
+            height: auto !important;
+        }
+        
+        /* Hide textareas, show the text div */
+        textarea {
+            display: none !important;
+        }
+        
+        /* Ensure colors render */
+        * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        /* Page break handling */
+        h1, h2, h3, h4 {
+            break-after: avoid;
+        }
+        .break-inside-avoid {
+            break-inside: avoid;
+        }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
